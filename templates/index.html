@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        article{
+            padding: 30px 15px;
+            border: black 1px solid;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h2>Новости</h2>
+    <a href="/resources/list">Новостные ресурсы</a><br><br>
+    <a href="/actualize/news">Актуализировать</a><br><br>
+</header>
+<main>
+    <form class="search"><input name="query" value="{{.SearchQuery}}"/>
+        <button type="submit">Поиск</button>
+    </form>
+    {{range .News}}
+    <article>
+        <div class="article-header">
+            <p><b>Дата публикации</b> <i>{{.PublishDate}}</i></p>
+            {{if .Author}}
+            <p><b>Автор</b> <i>{{.Author}}</i></p>
+            {{end}}
+            {{if .Category}}
+            <p><b>Категория</b> <i>{{.Category}}</i></p>
+            {{end}}
+            <h3><a href="{{.Link}}">{{.Title}}</a></h3>
+        </div>
+        <div class="article-body">
+            <p class="picture">
+                {{if .Picture}}
+                <img src="{{.Image}}" alt="pict"/>
+                {{end}}
+            </p>
+            <p class="description">{{.Description}}</p>
+        </div>
+    </article>
+    {{end}}
+</main>
+<footer>
+    <div class="pagination">
+        {{if gt .PrevPage 0}}
+            <a href="?page={{.PrevPage}}&perPage={{.PerPage}}&query={{.SearchQuery}}">Предыдущая</a>
+        {{else}}
+            <span>Предыдущая</span>
+        {{end}}
+        <span>{{.Page}}</span>
+        <a href="?page={{.NextPage}}&perPage={{.PerPage}}&query={{.SearchQuery}}">Следующая</a>
+    </div>
+</footer>
+</body>
+</html>

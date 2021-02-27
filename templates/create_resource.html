@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    label{
+        display: block;
+        margin-bottom: 5px;
+    }
+    label input{
+        margin-left: 15px;
+    }
+</style>
+<body>
+<div class="wrap">
+    <header>
+        <h2>Добавление новостного ресурса</h2>
+        <a href="/resources/list">Новостные ресурсы</a>
+    </header>
+
+    <main>
+        <div class="html-resource__create">
+            <h2>Парсинг html</h2>
+            <form method="POST" action="/resources">
+                <input type="hidden" name="isRss" value="0"/>
+                <label>
+                    Адрес страницы
+                    <input name="link" required/>
+                </label>
+                <label>
+                    Css Selector изображения
+                    <input name="pictureAttrs"/>
+                </label>
+                <label>
+                    Css Selector даты публикации
+                    <input name="publishDateAttrs"/>
+                </label>
+                <label>
+                    Css Selector заголовка
+                    <input name="titleAttrs" required/>
+                </label>
+                <label>
+                    Css Selector описания
+                    <input name="descAttrs"/>
+                </label>
+                <label>
+                    Css Selector блока новости
+                    <input name="itemAttrs" required/>
+                </label>
+                <label>
+                    Css Selector ссылки на новость
+                    <input name="linkAttrs" required/>
+                </label>
+
+
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
+
+        <div class="rss-resource__create">
+            <h2>Парсинг rss</h2>
+            <form method="POST" action="/resources">
+                <input type="hidden" name="isRss" value="1"/>
+
+                <label>
+                    Адрес страницы
+                    <input name="link" required/>
+                </label>
+
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>
